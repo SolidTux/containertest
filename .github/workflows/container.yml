@@ -13,4 +13,4 @@ jobs:
       - run: buildah images
       - run: buildah build -t sporad-server
       - run: buildah images
-      - run: buildah push server ghcr.io/SolidTux/sporad-server:latest
+      - run: buildah push ghcr.io/SolidTux/sporad-server:latest
