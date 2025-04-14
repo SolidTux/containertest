@@ -7,8 +7,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt update
       - run: sudo apt install -y buildah
+      - run: buildah login -u $GITHUB_REPOSITORY_OWNER -p $GITHUB_TOKEN ghcr.io
       - run: buildah images
       - run: buildah build -t sporad-server
       - run: buildah images
-      - run: buildah login -u ${GITHUB_REPOSITORY_OWNER} -p ${GITHUB_TOKEN} ghcr.io
       - run: buildah push server ghcr.io/SolidTux/sporad-server:latest
