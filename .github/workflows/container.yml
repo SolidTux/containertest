@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt update
       - run: sudo apt install -y buildah
-      - run: buildah login -u $GITHUB_REPOSITORY_OWNER -p $GITHUB_TOKEN ghcr.io
+      - run: gh auth token | buildah login ghcr.io --username YOURUSER --password-stdin
       - run: buildah images
       - run: buildah build -t sporad-server
       - run: buildah images
