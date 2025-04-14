@@ -4,8 +4,8 @@ jobs:
   Build-Container:
     runs-on: ubuntu-latest
     steps:
-      - run: apt update
-      - run: apt install -y buildah
+      - run: sudo apt update
+      - run: sudo apt install -y buildah
       - run: buildah images
       - run: buildah build -t sporad-server
       - run: buildah images
