@@ -2,12 +2,12 @@ name: Build container
 on: [push]
 jobs:
   Build-Container:
-    runs-on: buildah
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Buildah Action
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: my-new-image
-          tags: v1 ${{ github.sha }}
-          containerfiles: ./Dockerfile
+      - run: apt update
+      - run: apt install -y buildah
+      - run: buildah images
+      - run: buildah build -t sporad-server
+      - run: buildah images
+      - run: buildah login -u ${GITHUB_REPOSITORY_OWNER} -p ${GITHUB_TOKEN} ghcr.io
+      - run: buildah push server ghcr.io/SolidTux/sporad-server:latest
