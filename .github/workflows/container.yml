@@ -1,0 +1,13 @@
+name: Build container
+on: [push]
+jobs:
+  Build-Container:
+    runs-on: buildah
+    steps:
+      - uses: actions/checkout@v4
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: my-new-image
+          tags: v1 ${{ github.sha }}
+          containerfiles: ./Dockerfile
