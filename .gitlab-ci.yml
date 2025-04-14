@@ -6,7 +6,6 @@ container:build:
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | buildah login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
   script:
-    - buildah images
     - buildah build -t server
     - buildah images
     - buildah push server $CI_REGISTRY_IMAGE/server:latest
